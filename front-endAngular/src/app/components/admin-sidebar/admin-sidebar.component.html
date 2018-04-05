@@ -1,0 +1,24 @@
+<div class="alert alert-success" *ngIf="successMsg">
+  <p>Sidebar edited.</p>
+</div>
+<div class="alert alert-danger" *ngIf="errorMsg">
+  <p>There is Some Problem</p>
+</div>
+
+<h1 class="page-title">Sidebar</h1>
+<br>
+<br>
+
+<form novalidate #f="ngForm" (ngSubmit)="editSidebar(f)">
+
+  <div class="form-group">
+      <label for="">Content:</label>
+      <textarea class="form-control" name="content" cols="30" rows="10" placeholder="Content" 
+      [(ngModel)]="content"></textarea>
+  </div>
+
+  <div class="form-group">
+      <button class="btn btn-default" [disabled]="!f.valid">Edit Sidebar</button>
+  </div>
+
+</form>

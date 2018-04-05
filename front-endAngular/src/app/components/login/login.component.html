@@ -1,0 +1,52 @@
+<h1>Login</h1> 
+
+<div class="alert alert-danger" *ngIf = "loginFailed">
+  <p>Invalid Username or Password</p>
+</div>
+
+<div class="alert alert-success" *ngIf = "userRegistered">
+  <p>Thank for Registering. You can now login</p>
+</div>
+
+<form novalidate #f="ngForm" (ngSubmit) ="login(f)">
+
+  <div class="form-group">
+  <label for= "">Username</label>
+<input type="text" class="form-control" placeholder="Username" name="username"
+[(ngModel)] = "username"
+#userName = "ngModel"
+minlength  = "2"
+required
+/>
+</div>
+
+<div class="alert alert-danger" *ngIf="userName.errors?.required && userName.touched">
+  UserName is Required
+</div>
+
+<div class="alert alert-danger" *ngIf="userName.errors?.minlength && userName.touched">
+  Minimum length is 2
+  </div>
+  
+  <div class="form-group">
+      <label for= "">PassWord</label>
+    <input type="password" class="form-control" placeholder="Password" name="password"
+    [(ngModel)] = "password"
+    #userPassword = "ngModel"
+    minlength="4"
+    required
+    />
+    </div>
+    
+    <div class="alert alert-danger" *ngIf="userPassword.errors?.required && userPassword.touched">
+      Password is Required
+    </div>
+    
+    <div class="alert alert-danger" *ngIf="userPassword.errors?.minlength && userPassword.touched">
+      Minimum length is 4
+      </div>
+      
+    <div class="form-group">
+      <button class="btn btn-default" [disabled] = "!f.valid">Login</button>
+    </div>  
+</form>
